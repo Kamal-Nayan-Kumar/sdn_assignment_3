@@ -259,18 +259,18 @@ The O-RAN reference architecture establishes a hierarchical control structure di
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-    box/.style={rectangle, draw=accentdark, fill=codebg, thick, minimum width=2.6cm, minimum height=1.1cm, align=center, font=\small},
-    ctrl/.style={rectangle, draw=accent, fill=accent!10, thick, minimum width=3.4cm, minimum height=1.1cm, align=center, font=\small\bfseries},
+    box/.style={rectangle, draw=accentdark, fill=codebg, thick, minimum width=2.8cm, minimum height=1.1cm, align=center, font=\small},
+    ctrl/.style={rectangle, draw=accent, fill=accent!10, thick, minimum width=6.5cm, minimum height=1.1cm, align=center, font=\small\bfseries},
     arrow/.style={-Latex, thick, color=accentdark},
     darrow/.style={Latex-Latex, thick, color=accentdark}
   ]
-  \node[box, fill=accent!5, minimum width=6cm] (smo) at (0, 3.6) {\textbf{SMO / Non-RT RIC}\\(rApps, Lifecycle, AI/ML Models, $T > 1$\,s)};
-  \node[ctrl, minimum width=6cm] (nearric) at (0, 1.8) {\textbf{Near-RT RIC}\\(xApps, E2SM Services, $10\,\text{ms} \le T \le 1\,\text{s}$)};
+  \node[box, fill=accent!5, minimum width=6.5cm] (smo) at (0, 3.8) {\textbf{SMO / Non-RT RIC}\\(rApps, Lifecycle, AI/ML Models, $T > 1$\,s)};
+  \node[ctrl] (nearric) at (0, 2.0) {\textbf{Near-RT RIC}\\(xApps, E2SM Services, $10\,\text{ms} \le T \le 1\,\text{s}$)};
   
-  \node[box] (cucp) at (-4.2, -0.6) {\textbf{O-CU-CP}\\(RRC, PDCP-C)};
-  \node[box] (cuup) at (0, -0.6) {\textbf{O-CU-UP}\\(SDAP, PDCP-U)};
-  \node[box] (du) at (4.2, -0.6) {\textbf{O-DU}\\(RLC, MAC, High-PHY)};
-  \node[box, minimum width=3.4cm] (ru) at (4.2, -2.4) {\textbf{O-RU}\\(Low-PHY, RF Frontend)};
+  \node[box] (cucp) at (-4.4, 0.0) {\textbf{O-CU-CP}\\(RRC, PDCP-C)};
+  \node[box] (cuup) at (0, 0.0) {\textbf{O-CU-UP}\\(SDAP, PDCP-U)};
+  \node[box] (du) at (4.4, 0.0) {\textbf{O-DU}\\(RLC, MAC, High-PHY)};
+  \node[box, minimum width=3.4cm] (ru) at (4.4, -2.0) {\textbf{O-RU}\\(Low-PHY, RF Frontend)};
 
   \draw[darrow] (smo) -- node[right, font=\footnotesize] {A1 Interface} (nearric);
   \draw[darrow] (nearric.south -| cucp.north) -- node[left, font=\footnotesize] {E2-C} (cucp.north);
@@ -278,8 +278,9 @@ The O-RAN reference architecture establishes a hierarchical control structure di
   \draw[darrow] (nearric.south -| du.north) -- node[right, font=\footnotesize] {E2-DU} (du.north);
   \draw[darrow] (du) -- node[right, font=\footnotesize] {Open Fronthaul (7-2x)} (ru);
   \draw[darrow] (cucp) -- node[above, font=\footnotesize] {E1} (cuup);
-  \draw[darrow] (cucp) to[bend right=25] node[below, font=\footnotesize] {F1-C} (du);
+  \draw[darrow] (cucp.south) to[bend right=22] node[below, font=\footnotesize] {F1-C Interface} (du.south);
 \end{tikzpicture}
+\vspace{0.6cm}
 \caption{O-RAN reference architecture and functional disaggregation.}
 \label{fig:oran_arch}
 \end{figure}
@@ -301,42 +302,42 @@ The O-RAN SC Near-RT RIC is structured as a collection of specialized microservi
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-    box/.style={rectangle, draw=accentdark, fill=codebg, thick, minimum width=2.8cm, minimum height=1.0cm, align=center, font=\small},
-    db/.style={cylinder, draw=accentdark, fill=accent!10, shape border rotate=90, aspect=0.25, thick, minimum width=2.6cm, minimum height=1.1cm, align=center, font=\small\bfseries},
-    rmr/.style={rectangle, draw=accent, fill=accent!15, dashed, thick, minimum width=11.0cm, minimum height=0.7cm, align=center, font=\small\bfseries\color{accentdark}},
+    box/.style={rectangle, draw=accentdark, fill=codebg, thick, minimum width=2.6cm, minimum height=1.0cm, align=center, font=\small},
+    db/.style={cylinder, draw=accentdark, fill=accent!10, shape border rotate=90, aspect=0.25, thick, minimum width=2.4cm, minimum height=1.1cm, align=center, font=\small\bfseries},
+    rmr/.style={rectangle, draw=accent, fill=accent!15, dashed, thick, minimum width=9.2cm, minimum height=0.7cm, align=center, font=\small\bfseries\color{accentdark}},
     arrow/.style={-Latex, thick, color=accentdark},
     sctparrow/.style={-Latex, very thick, color=failred}
   ]
   % Top level: xApp
-  \node[box, fill=accent!10, minimum width=6cm] (xapp) at (0, 3.8) {\textbf{Python Monitoring xApp}\\(\code{python_xapp_runner})};
+  \node[box, fill=accent!10, minimum width=4.8cm] (xapp) at (0, 3.8) {\textbf{Python Monitoring xApp}\\(\code{python_xapp_runner})};
 
   % Middle level: Core services
-  \node[box] (submgr) at (-3.8, 2.0) {\textbf{Subscription Mgr}\\(\code{submgr}, Port 8088)};
+  \node[box] (submgr) at (-3.3, 2.0) {\textbf{Subscription Mgr}\\(\code{submgr}, Port 8088)};
   \node[box] (e2mgr) at (0, 2.0) {\textbf{E2 Manager}\\(\code{e2mgr}, Port 3800)};
-  \node[box] (rtmgr) at (3.8, 2.0) {\textbf{Routing Mgr Sim}\\(\code{rtmgr_sim}, Port 12020)};
+  \node[box] (rtmgr) at (3.3, 2.0) {\textbf{Routing Mgr Sim}\\(\code{rtmgr_sim}, Port 12020)};
   
   % RMR bus
   \node[rmr] (rmrbus) at (0, 0.5) {RIC Message Router (RMR) Peer-to-Peer Interconnect};
   
   % Bottom level: Data & Termination
-  \node[db] (dbaas) at (-3.0, -1.2) {\textbf{DBAAS}\\(Redis 6379 / RNIB)};
-  \node[box, minimum width=3.8cm] (e2t) at (2.2, -1.2) {\textbf{E2 Termination (\code{e2term})}\\(RMR 38000, SCTP 36421)};
+  \node[db] (dbaas) at (-2.6, -1.2) {\textbf{DBAAS}\\(Redis 6379 / RNIB)};
+  \node[box, minimum width=3.4cm] (e2t) at (2.2, -1.2) {\textbf{E2 Termination (\code{e2term})}\\(RMR 38000, SCTP 36421)};
   
   % External: E2 Node
   \node[box, fill=failred!10, draw=failred, minimum width=4.8cm] (e2node) at (2.2, -2.8) {\textbf{Disaggregated E2 Node}\\(srsRAN gNB / CU / DU)};
 
   % Direct clean non-overlapping connections
-  \draw[arrow] (xapp.west) -- ++(-0.8, 0) |- node[left, pos=0.25, font=\footnotesize] {REST Subscribe (8088)} (submgr.north);
+  \draw[arrow] (xapp.west) -| node[midway, left=4pt, font=\footnotesize] {REST Subscribe (8088)} (submgr.north);
   \draw[arrow] (submgr.south) -- node[left, font=\footnotesize] {RMR 4560} (submgr.south |- rmrbus.north);
   \draw[arrow] (e2mgr.south) -- node[left, font=\footnotesize] {RMR 3801} (e2mgr.south |- rmrbus.north);
   \draw[arrow] (rtmgr.south) -- node[right, font=\footnotesize] {Port 12020} (rtmgr.south |- rmrbus.north);
-  \draw[arrow] (submgr.east) -- (e2mgr.west);
 
   \draw[arrow] (rmrbus.south -| dbaas.north) -- (dbaas.north);
   \draw[arrow] (e2t.north) -- (rmrbus.south -| e2t.north);
   \draw[sctparrow] (e2node.north) -- node[right, font=\footnotesize, color=failred] {SCTP E2AP (Port 36421)} (e2t.south);
-  \draw[arrow] (rmrbus.east) -- ++(0.7, 0) -- ++(0, 3.3) -- node[above, font=\footnotesize] {RIC\_INDICATION (12050)} (xapp.east);
+  \draw[arrow] (rmrbus.east) -- ++(0.5, 0) -- node[midway, right=4pt, font=\footnotesize] {RIC\_INDICATION (12050)} ++(0, 3.3) -- (xapp.east);
 \end{tikzpicture}
+\vspace{0.6cm}
 \caption{Internal microservice topology and message exchange channels of Near-RT RIC.}
 \label{fig:near_rt_ric_internal}
 \end{figure}
