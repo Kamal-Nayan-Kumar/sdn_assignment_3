@@ -163,41 +163,53 @@
 % ==================================================================
 \begin{document}
 
+% ================== TITLE ==================
 \begin{titlepage}
   \centering
-  \vspace*{0.8cm}
+  \vspace*{1.6cm}
 
-  {\large\scshape Software Defined Networking (CS304)\par}
-  \vspace{0.4cm}
-  {\LARGE\bfseries\color{accentdark} Assignment 3: O-RAN Near-RT RIC Architecture, Software Components, and xApp Radio Measurement Subscriptions\par}
+  {\color{accent}\rule{\textwidth}{1.2pt}}\\[0.5cm]
+  {\LARGE\bfseries\color{accentdark} Software Defined Networks\par}
+  \vspace{0.35cm}
+  {\LARGE\bfseries\color{accentdark} Assignment 3\par}
+  \vspace{0.5cm}
+  {\color{accent}\rule{\textwidth}{1.2pt}}\\[0.9cm]
 
-  \vspace{0.8cm}
-  {\large October 2026\par}
+  {\LARGE O-RAN Near-RT RIC Architecture \& Software Components\par}
+  \vspace{0.25cm}
+  {\large and xApp Radio Measurement Subscriptions via E2SM-KPM\par}
 
   \vspace{1.0cm}
 
-  \begin{tabular}{llr}
+  % --- Group and team ---
+  {\large\bfseries Group No. 19\par}
+  \vspace{0.5cm}
+
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{@{}r l@{}}
     \toprule
-    \textbf{Name} & \textbf{Roll No.} & \textbf{Contribution} \\
+    \textbf{Name} & \textbf{Roll No.} \\
     \midrule
-    Kamal Nayan Kumar   & 23BDS026 & Lead Architect, Container Orchestration, xApp Telemetry \\
-    Altaf Raja          & 23BCS011 & RIC Component Analysis, Subscription Manager Tracing \\
-    Ankit Kumar Keshari & 23BCS015 & E2AP \& E2SM-KPM Analysis, Bug Diagnostics \\
-    Soumya Nimje        & 23BEC054 & Radio Metrics Exploration, LaTeX Documentation \\
+    Kamal Nayan Kumar   & 23BDS026 \\
+    Altaf Raja          & 23BCS011 \\
+    Ankit Kumar Keshari & 23BCS015 \\
+    Soumya Nimje        & 23BEC054 \\
     \bottomrule
   \end{tabular}
+  \renewcommand{\arraystretch}{1}
 
-  \vspace{1.2cm}
+  \vspace{1.0cm}
 
-  {\large\bfseries Course Instructor}\\[0.25cm]
+  {\large\bfseries Instructor}\\[0.3cm]
   {\large Dr.\ Jagadeesha R B\par}
 
   \vfill
 
+  % --- Institute logo (bottom of the page) ---
   \IfFileExists{logo.jpeg}{%
-    \includegraphics[width=0.72\textwidth]{logo.jpeg}%
+    \includegraphics[width=0.78\textwidth]{logo.jpeg}%
   }{%
-    {\large\color{notegrey}\texttt{logo.jpeg (Institute Letterhead)}}%
+    {\large\color{notegrey}\texttt{logo.jpeg (missing)}}%
   }
 \end{titlepage}
 
