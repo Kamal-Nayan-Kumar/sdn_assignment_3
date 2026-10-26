@@ -1,0 +1,8 @@
+*.aux
+*.log
+*.out
+*.toc
+.logs/
+__pycache__/
+*.pyc
+report/figs/test_sample.png
