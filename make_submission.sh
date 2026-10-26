@@ -20,18 +20,28 @@ else
   cp "$ROOT/report/report.pdf" "$STAGE/report.pdf"
 fi
 
-# 2. Code and resources under code/
+# 2. Everything else under code/
 CODE="$STAGE/code"
 mkdir -p "$CODE"
 
-echo "[submit] Copying scripts and report source..."
+echo "[submit] Copying scripts, README, and make_submission..."
 cp -r "$ROOT/scripts" "$CODE/"
-cp -r "$ROOT/report" "$CODE/"
 cp "$ROOT/README.md" "$CODE/"
+cp "$ROOT/make_submission.sh" "$CODE/"
 
-echo "[submit] Copying O-RAN SC RIC directory (excluding .git)..."
+echo "[submit] Copying clean report sources..."
+mkdir -p "$CODE/report/figs"
+cp "$ROOT/report/report.tex" "$CODE/report/"
+cp "$ROOT/report/logo.jpeg" "$CODE/report/"
+cp "$ROOT/report/build.sh" "$CODE/report/"
+cp "$ROOT/report/capture.sh" "$CODE/report/"
+cp "$ROOT/report/render_term.py" "$CODE/report/"
+cp "$ROOT/report/figs"/fig_*.png "$CODE/report/figs/"
+
+echo "[submit] Copying O-RAN SC RIC directory..."
 mkdir -p "$CODE/oran-sc-ric"
-rsync -av --exclude='.git' "$ROOT/oran-sc-ric/" "$CODE/oran-sc-ric/" >/dev/null
+rsync -av --exclude='.git' --exclude='__pycache__' --exclude='*.pyc' \
+  "$ROOT/oran-sc-ric/" "$CODE/oran-sc-ric/" >/dev/null
 
 echo "[submit] Generating zip bundle: $OUT"
 rm -f "$OUT"
