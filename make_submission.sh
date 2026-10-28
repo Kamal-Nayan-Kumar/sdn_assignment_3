@@ -36,7 +36,7 @@ cp "$ROOT/report/logo.jpeg" "$CODE/report/"
 cp "$ROOT/report/build.sh" "$CODE/report/"
 cp "$ROOT/report/capture.sh" "$CODE/report/"
 cp "$ROOT/report/render_term.py" "$CODE/report/"
-cp "$ROOT/report/figs"/fig_*.png "$CODE/report/figs/"
+cp "$ROOT/report/figs"/*.png "$CODE/report/figs/"
 
 echo "[submit] Copying O-RAN SC RIC directory..."
 mkdir -p "$CODE/oran-sc-ric"

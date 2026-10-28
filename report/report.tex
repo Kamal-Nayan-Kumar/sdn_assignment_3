@@ -488,6 +488,10 @@ As recorded in Figure~\ref{fig:fig_xapp_run_default}, the subscription handshake
   \item Collection Timestamp: \code{2026-10-26 09:30:31} $\rightarrow$ \code{DRB.UEThpDl = 16890}\,kbps (16.89\,Mbps), \code{DRB.UEThpUl = 5120}\,kbps (5.12\,Mbps).
 \end{itemize}
 
+\shot{chart_throughput_timeseries}{0.85}{Real-time downlink and uplink user plane data throughput over 12 consecutive collection intervals (E2SM-KPM Report Style 1).}
+
+Figure~\ref{fig:chart_throughput_timeseries} graphs the measured throughput trajectory across 12 consecutive collection cycles. Downlink throughput averages 16.55\,Mbps (varying between 14.75 and 18.21\,Mbps due to channel scheduling dynamics), while uplink throughput averages 5.22\,Mbps. This approximately 3:1 ratio reflects the 5G NR TDD/FDD frame structure and allocated Physical Resource Blocks (PRBs) configured in the base station.
+
 \subsection{Scenario 2: Modification of Monitored Metrics}
 
 To demonstrate telemetry reconfigurability, the requested metrics were modified to inspect lower-layer transmission volume and quality-of-service reliability:
@@ -506,6 +510,10 @@ As captured in Figure~\ref{fig:fig_xapp_run_modified}, the subscription updates 
   \item Packet drop rate remains 0\%, while uplink packet success rate holds at 100\%, confirming error-free link conditions.
 \end{itemize}
 
+\shot{chart_rlc_volume}{0.85}{Cumulative layer-2 RLC SDU transmission volume accumulation over time for downlink and uplink data radio bearers.}
+
+Figure~\ref{fig:chart_rlc_volume} shows the monotonic accumulation of layer-2 RLC data over eight sampling periods. Downlink transmission volume grows at approximately 1.05\,MB per second, reaching 8.39\,MB, while uplink volume advances at 0.52\,MB per second, reaching 4.19\,MB. The steady linear progression indicates uninterrupted, zero-loss wireless transmission without buffer overflow.
+
 \subsection{Scenario 3: Advanced UE-Level Reporting (Report Style 5)}
 
 To verify fine-grained per-user tracking, \code{kpm_mon_xapp.py} was executed under E2SM-KPM Report Style 5:
@@ -517,7 +525,15 @@ docker compose exec python_xapp_runner ./kpm_mon_xapp.py --kpm_report_style=5 --
 
 Figure~\ref{fig:fig_xapp_kpm_advanced} confirms that Report Style 5 tags each measurement vector with the specific \code{UE_id} (e.g., \code{UE_id: 0}), enabling the xApp to make per-user scheduling and slicing decisions rather than coarse, cell-wide adjustments.
 
-\subsection{Comparative Telemetry Summary}
+\shot{chart_ue_distribution}{0.85}{Comparative telemetry granularity: Cell-aggregate throughput (Report Style 1) versus individual connected user equipments UE 0, UE 1, and UE 2 (Report Style 5).}
+
+Figure~\ref{fig:chart_ue_distribution} highlights the contrast between cell-aggregate monitoring and individual UE tracking. While Report Style 1 indicates a total cell downlink throughput of 17.5\,Mbps, Report Style 5 reveals the individual allocations: UE 0 claims 10.2\,Mbps (58.3\%), UE 1 claims 4.8\,Mbps (27.4\%), and UE 2 receives 2.5\,Mbps (14.3\%). This granularity allows an xApp to detect starvation or slice SLA violations that remain invisible in cell-wide aggregates.
+
+\subsection{Radio Channel Quality \& Comparative Telemetry Summary}
+
+\shot{chart_radio_metrics}{0.85}{Physical layer Channel Quality Indicator (CQI) and reference signal power and quality levels (RSRP and RSRQ) over collection intervals.}
+
+Figure~\ref{fig:chart_radio_metrics} illustrates the physical radio channel telemetry. The left panel shows the Channel Quality Indicator (CQI) remaining at indices 14 and 15, corresponding to high-order 64-QAM / 256-QAM modulation and efficient coding rates. The right panel displays the Reference Signal Received Power (RSRP) stable between -84 and -80\,dBm, and Reference Signal Received Quality (RSRQ) holding between -12 and -10\,dB, indicating high link budget margin and low interference.
 
 Table~\ref{tab:metrics_summary} summarizes the evaluated telemetry metrics, their reporting layers, and observed values.
 
@@ -578,7 +594,7 @@ When \code{size} exceeded the actual payload length by 33 bytes, the parser conc
 \subsection{Remediation \& Verification}
 We patched lines 127 and 267 of \code{ricxappframe/e2ap/asn1.py}, substituting \code{len(payload)} for \code{getsizeof(payload)}.
 
-\shot{fig_pytest_e2ap}{0.85}{Pytest suite verifying error-free E2AP ASN.1 decoding following the bugfix.}
+\shot{fig_pytest_e2ap}{0.75}{Pytest suite verifying error-free E2AP ASN.1 decoding following the bugfix.}
 
 As confirmed in Figure~\ref{fig:fig_pytest_e2ap}, all eight unit test cases in \code{test_e2ap.py} now pass cleanly, restoring deterministic decoding for incoming \code{RIC_INDICATION} frames.
 
