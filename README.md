@@ -1,8 +1,10 @@
 # SDN Assignment 3: O-RAN Near-RT RIC Architecture & xApp Telemetry
 
+**[Demo Video](https://drive.google.com/file/d/10WjrTr50iy1z61MZFGTKL9qaEHBmQp7m/view?usp=sharing)** • **[`report/report.pdf`](report/report.pdf)**
+
 Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-Time Radio Intelligent Controller (Near-RT RIC, `i-release`) and automated radio measurement telemetry using Python xApps.
 
-**Start with [`report/report.pdf`](report/report.pdf)** for the complete 18-page report, including architecture diagrams, component analysis, protocol workflows, and 13 terminal screenshots.
+**Start with [`report/report.pdf`](report/report.pdf)** for the complete 18-page report, including architecture diagrams, component analysis, protocol workflows, and 13 terminal screenshots. The walkthrough video is available at **[Demo Video](https://drive.google.com/file/d/10WjrTr50iy1z61MZFGTKL9qaEHBmQp7m/view?usp=sharing)**.
 
 ---
 
@@ -24,8 +26,8 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 | Path | Description |
 |---|---|
 | **`report/report.pdf`** | **The complete 18-page technical report.** |
-| **`demo_video/demo_video.mp4`** | **The 3.5-minute HD demo video guide with voice narration.** |
-| `demo_video/` | Video generation pipeline (`generate_audio.py`, `render_slides.py`, `assemble_video.py`). |
+| **`demo_video/demo_video.mp4`** | **The 3.2-minute HD walkthrough video ([Demo Video](https://drive.google.com/file/d/10WjrTr50iy1z61MZFGTKL9qaEHBmQp7m/view?usp=sharing)).** |
+| `demo_video/` | Video generation pipeline (`generate_kalpit_audio.py`, `render_macos_video.py`). |
 | `report/report.tex` | LaTeX source code with custom TikZ architecture diagrams. |
 | `report/figs/` | 13 terminal captures with dark window styling and traffic lights. |
 | `report/build.sh` | One-command compilation script supporting both Tectonic and pdfTeX. |
@@ -40,51 +42,6 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 | `scripts/run_ric.sh` | Starts Docker Compose and verifies all seven RIC microservices. |
 | `scripts/run_all.sh` | Full automated workflow: launches RIC, runs telemetry, captures logs, builds PDF. |
 | `make_submission.sh` | Packages the final submission zip bundle. |
-
----
-
-## Demo Video Guide (`demo_video/demo_video.mp4`)
-
-A 3.2-minute full HD video demonstration recorded on a macOS desktop environment with authentic Sonoma wallpaper, top menu bar, interactive live Terminal execution, Keynote presentation slides for diagrams and numbers, and natural male voice narration synthesized via Sarvam AI (`kalpit_en_edtech` on `bulbul:v4-flash`):
-
-- **Resolution:** 1920x1080 (Full HD, 30 fps, H.264 video, AAC stereo audio)
-- **Duration:** 3 minutes 13 seconds (193.32 seconds)
-- **File size:** 7.3 MB
-- **Voice Model:** Sarvam AI `bulbul:v4-flash` (Speaker: `kalpit_en_edtech`, natural conversational educational tone)
-- **Desktop Style:** Authentic macOS Sonoma wallpaper with top menu bar (` Terminal` / ` Keynote`, Wi-Fi 100%, and Clock).
-- **Presentation Modes:**
-  - **Keynote Slide Mode:** Clean slide windows displaying project details, O-RAN architecture diagrams, throughput time-series graphs, RLC volume accumulation charts, and multi-UE bar charts.
-  - **Live Terminal Mode:** Authentic macOS Terminal (`Terminal.app`) typing commands character-by-character with a blinking cursor and streaming real-time execution outputs.
-
-### Video Structure & Scene Breakdown
-
-1. **Scene 1 (0:00 - 0:34): Project Overview & O-RAN Architecture**
-   - Title card showing EC 466, Assignment 3, Group 19, instructor Dr. Jagadeesha R B, and IIIT Dharwad letterhead.
-   - Transitions into the O-RAN Disaggregation Architecture diagram highlighting SMO/Non-RT RIC ($T > 1$\,s), Near-RT RIC ($10\,\text{ms} \le T \le 1\,\text{s}$), and O-CU/O-DU functional splits.
-2. **Scene 2 (0:34 - 1:03): Objective 1 — Multi-Container RIC Deployment**
-   - Live terminal typing and executing `docker info`, `docker compose up -d`, and `docker ps`.
-   - All seven microservices start on subnet `10.0.2.0/24`, paired with the internal Near-RT RIC topology diagram.
-3. **Scene 3 (1:03 - 1:39): Objective 1 — Microservice Inspection & Protocol Logs**
-   - Live streaming logs for `submgr` (RMR 4560, REST 8088), `e2mgr` (RMR 3801, RNIB sync), `e2term` (SCTP 36421, RMR 38000), and Redis `dbaas` active E2T instance record.
-   - Reviews static RMR routing table `routes.rtg`.
-4. **Scene 4 (1:39 - 2:15): Objective 2 — Monitoring xApp & User Throughput**
-   - Terminal runs `simple_mon_xapp.py`, initiates REST subscription with Subscription ID 65.
-   - Periodic `RIC_INDICATION` telemetry frames stream in live every 1000 ms (`DRB.UEThpDl = 15.42-16.89 Mbps`, `DRB.UEThpUl = 4.82-5.12 Mbps`).
-   - Side-by-side time-series graph dynamically plots throughput across 12 collection intervals.
-5. **Scene 5 (2:15 - 2:44): Objective 2 — Metric Reconfiguration (RLC Volumes & Reliability)**
-   - Terminal executes modified metrics xApp with Subscription ID 66.
-   - Displays cumulative RLC SDU byte volume advancing to 8.39 MB DL and 4.19 MB UL with 0% packet drop rate.
-   - Cumulative volume area chart updates in sync.
-6. **Scene 6 (2:44 - 3:05): Advanced Telemetry, Upstream Bug Fix & Project Summary**
-   - Demonstrates E2SM-KPM Report Style 5 per-UE tracking (`UE_id: 0` at 10.2 Mbps) and radio channel indicators (CQI 14--15, RSRP -82 dBm).
-   - Runs `pytest tests/test_e2ap.py` passing 8/8 tests after substituting `len(payload)` for `sys.getsizeof`.
-   - Displays summary of deliverables and GitHub repository links.
-
-To regenerate the video locally:
-```bash
-python3 demo_video/generate_kalpit_audio.py
-python3 demo_video/render_macos_video.py
-```
 
 ---
 
