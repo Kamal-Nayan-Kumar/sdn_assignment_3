@@ -41,7 +41,7 @@
   linkcolor=accent,
   urlcolor=accent,
   citecolor=accent,
-  pdftitle={SDN Assignment 3: O-RAN Near-RT RIC and xApp Telemetry},
+  pdftitle={EC 466: SDN Assignment 3: O-RAN Near-RT RIC and xApp Telemetry},
   pdfauthor={Kamal Nayan Kumar, Altaf Raja, Ankit Kumar Keshari, Soumya Nimje},
 }
 
@@ -153,7 +153,7 @@
 % ------------------------------------------------------------------
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\color{notegrey}SDN Assignment 3: O-RAN Near-RT RIC \& xApp Telemetry}
+\fancyhead[L]{\small\color{notegrey}EC 466: SDN Assignment 3 -- O-RAN Near-RT RIC \& xApp Telemetry}
 \fancyhead[R]{\small\color{notegrey}\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}}
@@ -169,7 +169,7 @@
   \vspace*{1.6cm}
 
   {\color{accent}\rule{\textwidth}{1.2pt}}\\[0.5cm]
-  {\LARGE\bfseries\color{accentdark} Software Defined Networks\par}
+  {\LARGE\bfseries\color{accentdark} EC 466: Software Defined Networks\par}
   \vspace{0.35cm}
   {\LARGE\bfseries\color{accentdark} Assignment 3\par}
   \vspace{0.5cm}
@@ -594,7 +594,7 @@ When \code{size} exceeded the actual payload length by 33 bytes, the parser conc
 \subsection{Remediation \& Verification}
 We patched lines 127 and 267 of \code{ricxappframe/e2ap/asn1.py}, substituting \code{len(payload)} for \code{getsizeof(payload)}.
 
-\shot{fig_pytest_e2ap}{0.75}{Pytest suite verifying error-free E2AP ASN.1 decoding following the bugfix.}
+\shot{fig_pytest_e2ap}{0.45}{Pytest suite verifying error-free E2AP ASN.1 decoding following the bugfix.}
 
 As confirmed in Figure~\ref{fig:fig_pytest_e2ap}, all eight unit test cases in \code{test_e2ap.py} now pass cleanly, restoring deterministic decoding for incoming \code{RIC_INDICATION} frames.
 
@@ -604,7 +604,7 @@ As confirmed in Figure~\ref{fig:fig_pytest_e2ap}, all eight unit test cases in \
 This assignment verified the deployment and operational mechanics of the O-RAN SC Near-Real-Time RIC and demonstrated automated radio telemetry acquisition through containerized xApps.
 
 \textbf{Key Findings:}
-\begin{enumerate}
+\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
   \item The Near-RT RIC successfully orchestrates seven decoupled microservices communicating across RMR message buses, Redis-backed Shared Data Layers, and HTTP/REST management interfaces without requiring a full Kubernetes cluster.
   \item The E2 Manager maintains topological awareness of base stations in the RNIB, while the Subscription Manager coordinates telemetry requests between xApps and E2 nodes.
   \item Using the E2SM-KPM service model, the monitoring xApp successfully initiated radio measurement subscriptions and received periodic indications containing user throughput (\code{DRB.UEThpDl}, \code{DRB.UEThpUl}), RLC transmission volumes, and link quality metrics.
@@ -614,12 +614,15 @@ This assignment verified the deployment and operational mechanics of the O-RAN S
 
 All code, automated runners, capture scripts, and document sources are organized and version-controlled within the submission repository.
 
-\begin{thebibliography}{9}
+\begingroup
+\small
+\begin{thebibliography}{9}\setlength{\itemsep}{0pt}
   \bibitem{oran_wg3_e2ap} O-RAN Alliance Working Group 3, ``Near-Real-time Radio Intelligent Controller Near-RT RIC E2 Application Protocol (E2AP),'' O-RAN.WG3.E2AP-R003-v03.00, 2023.
   \bibitem{oran_wg3_kpm} O-RAN Alliance Working Group 3, ``Near-Real-time Radio Intelligent Controller E2 Service Model: Key Performance Measurement (E2SM-KPM),'' O-RAN.WG3.E2SM-KPM-R003-v03.00, 2023.
   \bibitem{oran_sc_ric} O-RAN Software Community, ``Near-Real-time RAN Intelligent Controller (Near-RT RIC),'' \url{https://docs.o-ran-sc.org/en/latest/projects.html}.
   \bibitem{srsran_doc} Software Radio Systems, ``srsRAN Project: O-RAN NearRT-RIC and xApp Tutorial,'' \url{https://docs.srsran.com/projects/project/en/latest/tutorials/source/near-rt-ric/source/index.html}.
   \bibitem{srsran_repo} Software Radio Systems, ``Simplified O-RAN SC Near-RT RIC in Docker,'' \url{https://github.com/srsran/oran-sc-ric}.
 \end{thebibliography}
+\endgroup
 
 \end{document}

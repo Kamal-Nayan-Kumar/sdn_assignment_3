@@ -2,13 +2,13 @@
 
 Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-Time Radio Intelligent Controller (Near-RT RIC, `i-release`) and automated radio measurement telemetry using Python xApps.
 
-**Start with [`report/report.pdf`](report/report.pdf)** for the complete 16-page report, including architecture diagrams, component analysis, protocol workflows, and 13 terminal screenshots.
+**Start with [`report/report.pdf`](report/report.pdf)** for the complete 18-page report, including architecture diagrams, component analysis, protocol workflows, and 13 terminal screenshots.
 
 ---
 
 ## Course & Team Information
 
-- **Course:** Software Defined Networking (CS304)
+- **Course:** Software Defined Networking (EC 466)
 - **Instructor:** Dr. Jagadeesha R B
 - **Group:** Group No. 19
 - **Members:**
@@ -59,7 +59,7 @@ A 3.2-minute full HD video demonstration recorded on a macOS desktop environment
 ### Video Structure & Scene Breakdown
 
 1. **Scene 1 (0:00 - 0:34): Project Overview & O-RAN Architecture**
-   - Title card showing CS304, Assignment 3, Group 19, instructor Dr. Jagadeesha R B, and IIIT Dharwad letterhead.
+   - Title card showing EC 466, Assignment 3, Group 19, instructor Dr. Jagadeesha R B, and IIIT Dharwad letterhead.
    - Transitions into the O-RAN Disaggregation Architecture diagram highlighting SMO/Non-RT RIC ($T > 1$\,s), Near-RT RIC ($10\,\text{ms} \le T \le 1\,\text{s}$), and O-CU/O-DU functional splits.
 2. **Scene 2 (0:34 - 1:03): Objective 1 — Multi-Container RIC Deployment**
    - Live terminal typing and executing `docker info`, `docker compose up -d`, and `docker ps`.

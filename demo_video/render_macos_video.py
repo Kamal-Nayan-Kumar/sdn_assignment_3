@@ -146,7 +146,7 @@ def render_scene_1(duration, out_path):
 
         if t < split_t:
             # Slide 1: Title & Team Card
-            draw.text((150, 110), "Software Defined Networks (CS304)  •  Group No. 19", font=FONT_SUBTITLE, fill=ACCENT_BLUE)
+            draw.text((150, 110), "Software Defined Networks (EC 466)  •  Group No. 19", font=FONT_SUBTITLE, fill=ACCENT_BLUE)
             draw.text((150, 145), "O-RAN Near-RT RIC Architecture & xApp Telemetry", font=FONT_TITLE, fill=TEXT_DARK)
             draw.line([150, 205, 1770, 205], fill=(203, 213, 225), width=2)
 
@@ -689,7 +689,7 @@ def render_scene_6(duration, out_path):
             img, draw = make_macos_base("Keynote")
             draw_window_frame(img, draw, 100, 50, 1720, 990, "Keynote — SDN_Assignment_3_Presentation.key", is_dark=False)
 
-            draw.text((150, 110), "Project Summary  •  SDN Assignment 3", font=FONT_SUBTITLE, fill=ACCENT_BLUE)
+            draw.text((150, 110), "Project Summary  •  EC 466 SDN Assignment 3", font=FONT_SUBTITLE, fill=ACCENT_BLUE)
             draw.text((150, 145), "Final Deliverables & Repository Verification", font=FONT_TITLE, fill=TEXT_DARK)
             draw.line([150, 205, 1770, 205], fill=(203, 213, 225), width=2)
 

@@ -25,7 +25,7 @@ SCENES = [
         "id": 1,
         "title": "Introduction & O-RAN Architecture",
         "inputs": [
-            "Welcome to the demonstration of Software Defined Networking Assignment 3, presented by Group 19. We deploy the O-RAN Software Community Near-Real-Time Radio Intelligent Controller and collect radio telemetry using containerized Python xApps.",
+            "Welcome to the demonstration of Software Defined Networking Assignment 3 for course EC 466, presented by Group 19. We deploy the O-RAN Software Community Near-Real-Time Radio Intelligent Controller and collect radio telemetry using containerized Python xApps.",
             "Open RAN disaggregates monolithic base stations into open functional units. The Near-RT RIC operates control loops between 10 milliseconds and 1 second over the E2 interface, hosting xApps that optimize radio resources."
         ]
     },
