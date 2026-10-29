@@ -45,13 +45,16 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 
 ## Demo Video Guide (`demo_video/demo_video.mp4`)
 
-A 3-minute full HD dynamic video demonstration with live command executions, progressive log streaming, and natural male voice narration synthesized via Sarvam AI (`shubh_en_narration` on `bulbul:v4-flash`) is provided in `demo_video/demo_video.mp4`.
+A 3.2-minute full HD video demonstration recorded on a macOS desktop environment with authentic Sonoma wallpaper, top menu bar, interactive live Terminal execution, Keynote presentation slides for diagrams and numbers, and natural male voice narration synthesized via Sarvam AI (`kalpit_en_edtech` on `bulbul:v4-flash`):
 
 - **Resolution:** 1920x1080 (Full HD, 30 fps, H.264 video, AAC stereo audio)
-- **Duration:** 3 minutes 5 seconds (185.19 seconds)
+- **Duration:** 3 minutes 13 seconds (193.32 seconds)
 - **File size:** 7.3 MB
-- **Voice Model:** Sarvam AI `bulbul:v4-flash` (Speaker: `shubh_en_narration`, `en-IN`)
-- **Visual Style:** Pleasant dark indigo gradient with ambient lighting, dynamic command typing, live streaming logs, and synchronized telemetry graphs.
+- **Voice Model:** Sarvam AI `bulbul:v4-flash` (Speaker: `kalpit_en_edtech`, natural conversational educational tone)
+- **Desktop Style:** Authentic macOS Sonoma wallpaper with top menu bar (` Terminal` / ` Keynote`, Wi-Fi 100%, and Clock).
+- **Presentation Modes:**
+  - **Keynote Slide Mode:** Clean slide windows displaying project details, O-RAN architecture diagrams, throughput time-series graphs, RLC volume accumulation charts, and multi-UE bar charts.
+  - **Live Terminal Mode:** Authentic macOS Terminal (`Terminal.app`) typing commands character-by-character with a blinking cursor and streaming real-time execution outputs.
 
 ### Video Structure & Scene Breakdown
 
@@ -79,8 +82,8 @@ A 3-minute full HD dynamic video demonstration with live command executions, pro
 
 To regenerate the video locally:
 ```bash
-python3 demo_video/generate_sarvam_audio.py
-python3 demo_video/render_dynamic_video.py
+python3 demo_video/generate_kalpit_audio.py
+python3 demo_video/render_macos_video.py
 ```
 
 ---

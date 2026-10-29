@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 """
-generate_sarvam_audio.py - Generate natural voice narration using Sarvam AI TTS API.
-Target duration: ~180 seconds (3 minutes)
-Model: bulbul:v4-flash
-Speaker: shubh_en_narration (Male, English Narration)
-Language: en-IN
+generate_kalpit_audio.py - Generate natural, calm, friendly male voice narration
+using Sarvam AI TTS with speaker 'kalpit_en_edtech'.
 """
 
 import os
@@ -13,7 +10,7 @@ import json
 import base64
 import subprocess
 
-AUDIO_DIR = os.path.join(os.path.dirname(__file__), "audio_sarvam")
+AUDIO_DIR = os.path.join(os.path.dirname(__file__), "audio_kalpit")
 os.makedirs(AUDIO_DIR, exist_ok=True)
 
 API_KEY = "sk_17jnf99y_eHeuiqstgxn8lEKBATh9k9Am"
@@ -83,14 +80,14 @@ def generate_audio():
         wav_path = os.path.join(AUDIO_DIR, f"scene_{s_id}.wav")
         mp3_path = os.path.join(AUDIO_DIR, f"scene_{s_id}.mp3")
 
-        print(f"[*] Requesting Sarvam AI TTS for Scene {s_id}: {scene['title']}...")
+        print(f"[*] Requesting Sarvam AI (kalpit_en_edtech) for Scene {s_id}: {scene['title']}...")
         payload = {
             "inputs": scene["inputs"],
             "target_language_code": "en-IN",
-            "speaker": "shubh_en_narration",
+            "speaker": "kalpit_en_edtech",
             "pitch": 0,
-            "pace": 1.10,
-            "loudness": 1.3,
+            "pace": 1.05,
+            "loudness": 1.0,
             "speech_sample_rate": 24000,
             "enable_preprocessing": True,
             "model": "bulbul:v4-flash"
