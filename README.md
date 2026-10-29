@@ -45,28 +45,42 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 
 ## Demo Video Guide (`demo_video/demo_video.mp4`)
 
-A 3.5-minute full HD video walkthrough with synchronized voice narration is included in `demo_video/demo_video.mp4`.
+A 3-minute full HD dynamic video demonstration with live command executions, progressive log streaming, and natural male voice narration synthesized via Sarvam AI (`shubh_en_narration` on `bulbul:v4-flash`) is provided in `demo_video/demo_video.mp4`.
 
-- **Resolution:** 1920x1080 (1080p, 25 fps, H.264 video, AAC audio)
-- **Duration:** 3 minutes 35 seconds
-- **File size:** 8.7 MB
+- **Resolution:** 1920x1080 (Full HD, 30 fps, H.264 video, AAC stereo audio)
+- **Duration:** 3 minutes 5 seconds (185.19 seconds)
+- **File size:** 7.3 MB
+- **Voice Model:** Sarvam AI `bulbul:v4-flash` (Speaker: `shubh_en_narration`, `en-IN`)
+- **Visual Style:** Pleasant dark indigo gradient with ambient lighting, dynamic command typing, live streaming logs, and synchronized telemetry graphs.
 
 ### Video Structure & Scene Breakdown
 
-1. **Scene 1 (0:00 - 0:21):** Project Overview, Student Team (Group 19), Course (CS304), and Instructor (Dr. Jagadeesha R B).
-2. **Scene 2 (0:21 - 0:47):** O-RAN Reference Architecture, SMO/Non-RT RIC ($T > 1$\,s), Near-RT RIC ($10\,\text{ms} \le T \le 1\,\text{s}$), and O-CU/O-DU disaggregation.
-3. **Scene 3 (0:47 - 1:11):** Objective 1 — Multi-Container Near-RT RIC deployment via Docker Compose on subnet `10.0.2.0/24`.
-4. **Scene 4 (1:11 - 1:40):** Objective 1 — Microservice inspection and live logs (`submgr`, `e2mgr`, `e2term`, Redis `dbaas`, and `routes.rtg`).
-5. **Scene 5 (1:40 - 2:06):** Objective 2 — Monitoring xApp execution, REST subscription handshake, and real-time user throughput telemetry.
-6. **Scene 6 (2:06 - 2:31):** Objective 2 — Metric modification to layer-2 RLC transmission volume and QoS packet delivery reliability.
-7. **Scene 7 (2:31 - 2:54):** Advanced Telemetry — E2SM-KPM Report Style 5 per-UE tracking and physical channel quality (CQI, RSRP, RSRQ).
-8. **Scene 8 (2:54 - 3:35):** Technical Discovery — Upstream `sys.getsizeof` APER decoding bug fix, pytest verification (8/8 passed), and final deliverables summary.
+1. **Scene 1 (0:00 - 0:34): Project Overview & O-RAN Architecture**
+   - Title card showing CS304, Assignment 3, Group 19, instructor Dr. Jagadeesha R B, and IIIT Dharwad letterhead.
+   - Transitions into the O-RAN Disaggregation Architecture diagram highlighting SMO/Non-RT RIC ($T > 1$\,s), Near-RT RIC ($10\,\text{ms} \le T \le 1\,\text{s}$), and O-CU/O-DU functional splits.
+2. **Scene 2 (0:34 - 1:03): Objective 1 — Multi-Container RIC Deployment**
+   - Live terminal typing and executing `docker info`, `docker compose up -d`, and `docker ps`.
+   - All seven microservices start on subnet `10.0.2.0/24`, paired with the internal Near-RT RIC topology diagram.
+3. **Scene 3 (1:03 - 1:39): Objective 1 — Microservice Inspection & Protocol Logs**
+   - Live streaming logs for `submgr` (RMR 4560, REST 8088), `e2mgr` (RMR 3801, RNIB sync), `e2term` (SCTP 36421, RMR 38000), and Redis `dbaas` active E2T instance record.
+   - Reviews static RMR routing table `routes.rtg`.
+4. **Scene 4 (1:39 - 2:15): Objective 2 — Monitoring xApp & User Throughput**
+   - Terminal runs `simple_mon_xapp.py`, initiates REST subscription with Subscription ID 65.
+   - Periodic `RIC_INDICATION` telemetry frames stream in live every 1000 ms (`DRB.UEThpDl = 15.42-16.89 Mbps`, `DRB.UEThpUl = 4.82-5.12 Mbps`).
+   - Side-by-side time-series graph dynamically plots throughput across 12 collection intervals.
+5. **Scene 5 (2:15 - 2:44): Objective 2 — Metric Reconfiguration (RLC Volumes & Reliability)**
+   - Terminal executes modified metrics xApp with Subscription ID 66.
+   - Displays cumulative RLC SDU byte volume advancing to 8.39 MB DL and 4.19 MB UL with 0% packet drop rate.
+   - Cumulative volume area chart updates in sync.
+6. **Scene 6 (2:44 - 3:05): Advanced Telemetry, Upstream Bug Fix & Project Summary**
+   - Demonstrates E2SM-KPM Report Style 5 per-UE tracking (`UE_id: 0` at 10.2 Mbps) and radio channel indicators (CQI 14--15, RSRP -82 dBm).
+   - Runs `pytest tests/test_e2ap.py` passing 8/8 tests after substituting `len(payload)` for `sys.getsizeof`.
+   - Displays summary of deliverables and GitHub repository links.
 
-To regenerate the video guide locally:
+To regenerate the video locally:
 ```bash
-python3 demo_video/generate_audio.py
-python3 demo_video/render_slides.py
-python3 demo_video/assemble_video.py
+python3 demo_video/generate_sarvam_audio.py
+python3 demo_video/render_dynamic_video.py
 ```
 
 ---
