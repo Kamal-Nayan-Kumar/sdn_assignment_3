@@ -23,7 +23,9 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 
 | Path | Description |
 |---|---|
-| **`report/report.pdf`** | **The complete 16-page technical report.** |
+| **`report/report.pdf`** | **The complete 18-page technical report.** |
+| **`demo_video/demo_video.mp4`** | **The 3.5-minute HD demo video guide with voice narration.** |
+| `demo_video/` | Video generation pipeline (`generate_audio.py`, `render_slides.py`, `assemble_video.py`). |
 | `report/report.tex` | LaTeX source code with custom TikZ architecture diagrams. |
 | `report/figs/` | 13 terminal captures with dark window styling and traffic lights. |
 | `report/build.sh` | One-command compilation script supporting both Tectonic and pdfTeX. |
@@ -38,6 +40,34 @@ Deployment and evaluation of the O-RAN Software Community (O-RAN SC) Near-Real-T
 | `scripts/run_ric.sh` | Starts Docker Compose and verifies all seven RIC microservices. |
 | `scripts/run_all.sh` | Full automated workflow: launches RIC, runs telemetry, captures logs, builds PDF. |
 | `make_submission.sh` | Packages the final submission zip bundle. |
+
+---
+
+## Demo Video Guide (`demo_video/demo_video.mp4`)
+
+A 3.5-minute full HD video walkthrough with synchronized voice narration is included in `demo_video/demo_video.mp4`.
+
+- **Resolution:** 1920x1080 (1080p, 25 fps, H.264 video, AAC audio)
+- **Duration:** 3 minutes 35 seconds
+- **File size:** 8.7 MB
+
+### Video Structure & Scene Breakdown
+
+1. **Scene 1 (0:00 - 0:21):** Project Overview, Student Team (Group 19), Course (CS304), and Instructor (Dr. Jagadeesha R B).
+2. **Scene 2 (0:21 - 0:47):** O-RAN Reference Architecture, SMO/Non-RT RIC ($T > 1$\,s), Near-RT RIC ($10\,\text{ms} \le T \le 1\,\text{s}$), and O-CU/O-DU disaggregation.
+3. **Scene 3 (0:47 - 1:11):** Objective 1 — Multi-Container Near-RT RIC deployment via Docker Compose on subnet `10.0.2.0/24`.
+4. **Scene 4 (1:11 - 1:40):** Objective 1 — Microservice inspection and live logs (`submgr`, `e2mgr`, `e2term`, Redis `dbaas`, and `routes.rtg`).
+5. **Scene 5 (1:40 - 2:06):** Objective 2 — Monitoring xApp execution, REST subscription handshake, and real-time user throughput telemetry.
+6. **Scene 6 (2:06 - 2:31):** Objective 2 — Metric modification to layer-2 RLC transmission volume and QoS packet delivery reliability.
+7. **Scene 7 (2:31 - 2:54):** Advanced Telemetry — E2SM-KPM Report Style 5 per-UE tracking and physical channel quality (CQI, RSRP, RSRQ).
+8. **Scene 8 (2:54 - 3:35):** Technical Discovery — Upstream `sys.getsizeof` APER decoding bug fix, pytest verification (8/8 passed), and final deliverables summary.
+
+To regenerate the video guide locally:
+```bash
+python3 demo_video/generate_audio.py
+python3 demo_video/render_slides.py
+python3 demo_video/assemble_video.py
+```
 
 ---
 

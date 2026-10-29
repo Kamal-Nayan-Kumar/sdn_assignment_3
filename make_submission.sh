@@ -38,6 +38,14 @@ cp "$ROOT/report/capture.sh" "$CODE/report/"
 cp "$ROOT/report/render_term.py" "$CODE/report/"
 cp "$ROOT/report/figs"/*.png "$CODE/report/figs/"
 
+echo "[submit] Copying demo video and generator..."
+mkdir -p "$CODE/demo_video"
+cp "$ROOT/demo_video/demo_video.mp4" "$CODE/demo_video/"
+cp "$ROOT/demo_video/generate_audio.py" "$CODE/demo_video/"
+cp "$ROOT/demo_video/render_slides.py" "$CODE/demo_video/"
+cp "$ROOT/demo_video/assemble_video.py" "$CODE/demo_video/"
+cp -r "$ROOT/demo_video/slides" "$CODE/demo_video/"
+
 echo "[submit] Copying O-RAN SC RIC directory..."
 mkdir -p "$CODE/oran-sc-ric"
 rsync -av --exclude='.git' --exclude='__pycache__' --exclude='*.pyc' \
